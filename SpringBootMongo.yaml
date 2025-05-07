@@ -20,7 +20,7 @@ spec:
       - name: spring-container
         image: mithuntechnologies/springboot-mongo-application:1
         ports:
-        - containerPort: 8080
+        - containerPort: 8000
         resources:
           requests:
             cpu: 200m
@@ -47,7 +47,7 @@ spec:
     application: springbootmongo
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 8000
 ---
 apiVersion: apps/v1
 kind: ReplicaSet
