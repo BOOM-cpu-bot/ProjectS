@@ -33,5 +33,13 @@ public class UserController {
         userRepository.save(user);
 
         return "redirect:/";
+
+         // ✅ New: Delete user by ID
+    @PostMapping(value = "/delete")
+    public String delete(@RequestParam("id") String id) {
+        logger.info("Deleting user with ID: " + id);
+        userRepository.deleteById(id);
+        return "redirect:/";
+        
     }
 }
