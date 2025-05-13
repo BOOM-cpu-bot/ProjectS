@@ -81,6 +81,15 @@
 					row.append($("<td>" + item.firstName + "</td>"));
 					row.append($("<td>" + item.lastName + "</td>"));
 					row.append($("<td>" + item.email + "</td>"));
+									// Add Delete button form
+				var deleteForm = `
+					<form action="/delete" method="post" onsubmit="return confirm('Delete this user?');" style="display:inline;">
+						<input type="hidden" name="id" value="${item.id}" />
+						<button type="submit" class="btn btn-danger btn-sm">Delete</button>
+					</form>
+				`;
+
+				row.append($("<td>").html(deleteForm));
 
 				});
 			}
