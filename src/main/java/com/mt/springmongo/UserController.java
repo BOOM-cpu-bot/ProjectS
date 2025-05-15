@@ -8,14 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * Controller which handles reqest for saving {@link User}s.
- *
- * @author Mithun
+ * Controller which handles requests for saving and deleting {@link User}s.
  */
 @Controller
 public class UserController {
     private final UserRepository userRepository;
-    
+
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
@@ -28,17 +26,17 @@ public class UserController {
                        @RequestParam("lastName") String lastName,
                        @RequestParam("email") String email) {
 
-    	logger.info("Creating user name: "+firstName);
+        logger.info("Creating user name: " + firstName);
         User user = new User(firstName, lastName, email);
         userRepository.save(user);
 
         return "redirect:/";
     }
 
-    @PostMapping("/delete")
+    @PostMapping(value = "/delete")
     public String deleteUser(@RequestParam("id") String id) {
+        logger.info("Deleting user with id: " + id);
         userRepository.deleteById(id);
         return "redirect:/";
-        
     }
 }
